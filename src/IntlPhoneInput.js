@@ -78,6 +78,7 @@ export default class IntlPhoneInput extends React.Component {
     const countryData = await data;
     try {
       const country = await countryData.filter((obj) => obj.code === code)[0];
+      this?.props?.onCountryChange(country);
       this.setState({
         dialCode: country.dialCode,
         flag: country.flag,
@@ -88,6 +89,7 @@ export default class IntlPhoneInput extends React.Component {
       this.hideModal();
     } catch (err) {
       const defaultCountry = this.state.defaultCountry;
+      this?.props?.onCountryChange(defaultCountry);
       this.setState({
         dialCode: defaultCountry.dialCode,
         flag: defaultCountry.flag,
